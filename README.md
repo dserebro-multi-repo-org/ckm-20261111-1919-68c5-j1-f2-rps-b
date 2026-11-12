@@ -1,10 +1,12 @@
 # Rock Paper Scissors REST API
+[![Created with Morph](https://img.shields.io/badge/created%20with-Morph-6E56CF)](https://modelcode.ai)
 
 A Rock Paper Scissors game exposed as a REST API, built with PHP and Symfony.
 
 ## Prerequisites
 
-- PHP >= 8.2
+- PHP >= 8.2 (note: the versions pinned in `composer.lock` may require PHP 8.4; use PHP 8.4 if `composer install` reports a platform requirement error)
+- PHP extensions: xml, mbstring, curl, zip
 - [Composer](https://getcomposer.org/)
 - [Symfony CLI](https://symfony.com/download) (optional, for the dev server)
 
@@ -61,4 +63,20 @@ curl -X POST http://localhost:8000/games/{id}/moves \
   -d '{"player": 1, "choice": "rock"}'
 ```
 
-See the Testing section above for how to run the functional tests.
+## Configuration
+
+Environment variables are read from `.env` (override locally in an untracked `.env.local`).
+
+| Variable | Required | Purpose |
+| --- | --- | --- |
+| `APP_ENV` | Yes | Symfony environment (`dev` by default). |
+| `APP_DEBUG` | No | Enables debug mode (`true` by default in `.env`). |
+| `APP_SECRET` | Yes | Symfony secret; replace the placeholder with a random value outside development. |
+
+Game state is stored in `var/data/games.json`, created automatically at runtime. No database is needed.
+
+## Project layout
+
+- `config/` — Symfony configuration and routes.
+- `public/` — web entry point (`index.php`).
+- `src/` — application code (`Controller/`, `Entity/`, `Service/`).
