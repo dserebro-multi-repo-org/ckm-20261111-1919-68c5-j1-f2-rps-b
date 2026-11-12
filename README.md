@@ -60,3 +60,5 @@ curl -X POST http://localhost:8000/games/{id}/moves \
   -H 'Content-Type: application/json' \
   -d '{"player": 1, "choice": "rock"}'
 ```
+
+See the Testing section above for how to run the functional tests.
